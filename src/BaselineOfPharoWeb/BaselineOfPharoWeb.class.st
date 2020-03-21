@@ -13,19 +13,27 @@ BaselineOfPharoWeb >> baseline: spec [
 			baseline: 'Seaside3' with: [ 
 				spec
 					loads: #('Development' 'Examples' 'JQuery' 'Zinc');
-					repository: 'github://SeasideSt/Seaside:v3.4.x/repository' ]
+					repository: 'github://SeasideSt/Seaside:v3.4.x/repository' ].
 		
-			"baseline: 'Magritte' with: [ 
+		spec for: #(#'pharo7.x' #'pharo8.x') do: [
+			spec baseline: 'Magritte' with: [ 
 				spec
 					loads: #('Seaside');
-					repository: 'github://magritte-metamodel/magritte:v3.5.4/source' ];
-		
-			baseline: 'Bootstrap4' with: [ 
+					repository: 'github://magritte-metamodel/magritte:82c0c9a87f15fe2d01e233603fed0c6a396e2ad2/source' ]
+		].
+		spec for: #(#'pharo9.x') do: [
+			spec baseline: 'Magritte' with: [ 
+				spec
+					loads: #('Seaside');
+					repository: 'github://magritte-metamodel/magritte:master/source' ]
+		].
+	
+		spec	baseline: 'Bootstrap4' with: [ 
 				spec 
 					loads: #('Core' 'Examples');
-					repository: 'github://astares/Seaside-Bootstrap4:master/src' ];
+					repository: 'github://astares/Seaside-Bootstrap4:master/src' ].
 		
-			project: 'BootstrapMagritte' with: [
+		"spec	project: 'BootstrapMagritte' with: [
 				spec
 					className: #ConfigurationOfBootstrapMagritte;
 					versionString: #'stable';
