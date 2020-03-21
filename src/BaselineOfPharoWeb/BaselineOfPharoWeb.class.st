@@ -13,9 +13,9 @@ BaselineOfPharoWeb >> baseline: spec [
 			baseline: 'Seaside3' with: [ 
 				spec
 					loads: #('Development' 'Examples' 'JQuery' 'Zinc');
-					repository: 'github://SeasideSt/Seaside:v3.4.x/repository' ];
+					repository: 'github://SeasideSt/Seaside:v3.4.x/repository' ]
 		
-			baseline: 'Magritte' with: [ 
+			"baseline: 'Magritte' with: [ 
 				spec
 					loads: #('Seaside');
 					repository: 'github://magritte-metamodel/magritte:v3.5.4/source' ];
@@ -52,10 +52,8 @@ BaselineOfPharoWeb >> baseline: spec [
 			baseline: 'Voyage' with: [ 
 				spec 
 					loads: #('mongo');
-					repository: 'github://pharo-nosql/voyage:master/mc' ]
+					repository: 'github://pharo-nosql/voyage:master/mc' ]"
 	]
-		
-	
 ]
 
 { #category : #baselines }
