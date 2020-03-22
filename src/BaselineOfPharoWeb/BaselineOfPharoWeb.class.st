@@ -3,6 +3,7 @@ Metacello new
 	baseline:'PharoWeb';
 	repository: 'github://LucFabresse/PharoWeb/src';
 	onConflict: [ :ex | ex useLoaded ]; ""because external projects loads different versions of Seaside for example...""
+	""ignoreImage;"" ""zinc""
 	load.
 
 -----
@@ -32,7 +33,7 @@ BaselineOfPharoWeb >> baseline: spec [
 	self teapot: spec.
 	self mustache: spec.
 	self voyage: spec.
-	self garage: spec.
+	"self garage: spec."
 	"self parasol: spec	"
 ]
 
@@ -155,7 +156,7 @@ BaselineOfPharoWeb >> voyage: spec [
 
 	spec baseline: 'Voyage' with: [ 
 		spec 
-			loads: #('default' 'memory tests');
+			loads: #('memory tests' 'mongo tests');
 			repository: 'github://pharo-nosql/voyage:master/mc' ]
 ]
 
@@ -164,7 +165,7 @@ BaselineOfPharoWeb >> zinc: spec [
 
 	spec	baseline: 'ZincHTTPComponents' with: [ 
 		spec 
-			loads: #('Core' 'Zodiac' 'WebSocket' 'REST');
+			loads: #('Zodiac' 'WebSocket' 'REST');
 			repository: 'github://svenvc/zinc:master/repository' ]
 	
 ]
