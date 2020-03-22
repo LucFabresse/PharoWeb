@@ -8,13 +8,13 @@ os:
 
 smalltalk:
   - Pharo64-8.0
-  - Pharo64-9.0
+  # - Pharo64-9.0
 
 # https://docs.travis-ci.com/user/build-matrix/
-matrix:
-  fast_finish: true
-  allow_failures:
-    - smalltalk: Pharo64-8.0 Pharo64-9.0
+# matrix:
+#   fast_finish: true
+#   allow_failures:
+#     - smalltalk: Pharo64-8.0 Pharo64-9.0
 
 services:
   - mongodb
