@@ -23,12 +23,15 @@ before_script:
   - mongo test --eval 'db.createUser({user:"pharounittest",pwd:"test",roles:[]});'
 
 after_success:
+  - ls
   - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
   - cp "${SMALLTALK_CI_IMAGE}" "PharoWeb.image"
   - cp "${SMALLTALK_CI_CHANGES}" "PharoWeb.changes"
   - PHARO_VERSION=`echo ${TRAVIS_SMALLTALK_VERSION} | awk -F- '{print $2;}'`
+  - echo "PHARO_VERSION=${PHARO_VERSION}"
   - RESULT_ZIP="PharoWeb${PHARO_VERSION}-${TRAVIS_BRANCH}.zip"
-  - zip -q ${RESULT_ZIP} "PharoWeb.image" "PharoWeb.changes"
+  - echo "RESULT_ZIP=${RESULT_ZIP}"
+  - zip ${RESULT_ZIP} "PharoWeb.image" "PharoWeb.changes"
   - bash upload.sh ${RESULT_ZIP}
 
 deploy:
@@ -36,7 +39,7 @@ deploy:
   provider: releases
   api_key:
     secure:
-  file: ${RESULT_ZIP}
+  file: "PharoWeb*.zip"
   on:
     repo: LucFabresse/PharoWeb
     tags: true
