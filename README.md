@@ -9,4 +9,3 @@
 This project builds a Pharo image with Web development libraries and tools.
 
 This is the image to use for the [Pharo MOOC](https://mooc.pharo.org)
-
