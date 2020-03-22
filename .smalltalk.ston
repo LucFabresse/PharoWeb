@@ -16,8 +16,8 @@ SmalltalkCISpec {
         'Bootstrap.*',
         'Material.*',
         'Magritte.*',
-        'JSON.*'
-        'STON.*'
+        'JSON.*',
+        'STON.*',
         'XML.*',
         'Teapot.*',
         'Mustache.*',
