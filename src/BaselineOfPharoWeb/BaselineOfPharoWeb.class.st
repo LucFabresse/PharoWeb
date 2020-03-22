@@ -9,23 +9,7 @@ Metacello new
 
 WIP Notes :
 
-""	not load compared to old PharoWeb : XMLWriter
-	group: 'default' with: #('Seaside3' 'Bootstrap' 'Magritte3' 'BootstrapMagritte' 'Teapot' 'XMLParser' 'XMLWriter' 'Mustache' 'NeoJSON' 'Ston' 'ZincHTTPComponents' 'Voyage' 'Garage')	
-""
-			baseline: 'Garage' with: [ spec repository: 'github://pharo-rdbms/garage:master' ]
-					
-		""spec
-			baseline: 'Parasol'
-			with: [ spec
-				loads: 'tests';
-				repository: 'github://daniapq/Parasol:master/repository' ].""
-
-		""spec
-			baseline: 'MaterialDesignLite'
-			with: [ spec repository: 'github://daniapq/MaterialDesignLite:master/src' ].""
-	
-	]
-		
+""do we need? XMLWriter""
 	
 "
 Class {
@@ -41,15 +25,15 @@ BaselineOfPharoWeb >> baseline: spec [
 	self seaside: spec.
 	self seasideBootstrap: spec.
 	self magritte: spec.
-	
-	"self bootstrapMagritte: spec.
-	
+	self bootstrapMagritte: spec.
+	self materialDesignLite: spec.
 	self dataFormat: spec.
 	self zinc: spec.	
 	self teapot: spec.
 	self mustache: spec.
-	self voyage: spec"	
-
+	self voyage: spec.
+	self garage: spec.
+	"self parasol: spec	"
 ]
 
 { #category : #dependencies }
@@ -73,6 +57,16 @@ BaselineOfPharoWeb >> dataFormat: spec [
 ]
 
 { #category : #dependencies }
+BaselineOfPharoWeb >> garage: spec [
+
+	spec 
+		baseline: 'Garage' 
+		with: [ 
+			spec repository: 'github://pharo-rdbms/garage:master' ]
+
+]
+
+{ #category : #dependencies }
 BaselineOfPharoWeb >> magritte: spec [
 
 	spec for: #(#'pharo7.x' #'pharo8.x') do: [
@@ -91,12 +85,38 @@ BaselineOfPharoWeb >> magritte: spec [
 ]
 
 { #category : #dependencies }
+BaselineOfPharoWeb >> materialDesignLite: spec [	
+
+	spec
+    	baseline: 'MaterialDesignLite'
+    	with: [ 
+			spec 
+				loads: #('all');
+				repository: 'github://DuneSt/MaterialDesignLite:master/src' ]
+
+
+]
+
+{ #category : #dependencies }
 BaselineOfPharoWeb >> mustache: spec [
 
 	spec baseline: 'Mustache' with: [ 
 		spec 
-			loads: #('Core');
+			"loads: #('Core');"
 			repository: 'github://noha/mustache:master/repository' ]
+]
+
+{ #category : #dependencies }
+BaselineOfPharoWeb >> parasol: spec [	
+
+	spec
+		baseline: 'Parasol'
+		with: [ 
+			spec
+				loads: 'tests';
+				repository: 'github://SeasideSt/Parasol:master/repository' ]
+
+
 ]
 
 { #category : #dependencies }
@@ -127,9 +147,7 @@ BaselineOfPharoWeb >> seasideBootstrap: spec [
 BaselineOfPharoWeb >> teapot: spec [
 
 	spec baseline: 'Teapot' with: [ 
-		spec
-			loads: #('Tools');
-			repository: 'github://zeroflag/Teapot:master/source' ]
+		spec	repository: 'github://zeroflag/Teapot:master/source' ]
 ]
 
 { #category : #dependencies }
@@ -137,7 +155,7 @@ BaselineOfPharoWeb >> voyage: spec [
 
 	spec baseline: 'Voyage' with: [ 
 		spec 
-			loads: #('mongo');
+			loads: #('default' 'memory tests');
 			repository: 'github://pharo-nosql/voyage:master/mc' ]
 ]
 
