@@ -67,8 +67,8 @@ BaselineOfPharoWeb >> dataFormat: spec [
 
 	spec
 		baseline: 'XMLParser' with: [ spec repository: 'github://svenvc/XML-Support-Pharo:master' ];	
-		baseline: 'Ston' with: [ spec repository: 'github://svenvc/ston:master/repository' ];
-		baseline: 'NeoJSON' with: [ spec repository: 'github://svenvc/NeoJSON:master/repository' ]
+		baseline: 'Ston' with: [ spec repository: 'github://svenvc/ston:master/repository' ]
+		";baseline: 'NeoJSON' with: [ spec repository: 'github://svenvc/NeoJSON:master/repository' ]"
 
 ]
 
@@ -78,14 +78,14 @@ BaselineOfPharoWeb >> magritte: spec [
 	spec for: #(#'pharo7.x' #'pharo8.x') do: [
 		spec baseline: 'Magritte' with: [ 
 			spec
-				loads: #('Seaside');
+				loads: #('default' 'Seaside' 'Tests');
 				repository: 'github://magritte-metamodel/magritte:82c0c9a87f15fe2d01e233603fed0c6a396e2ad2/source' ]
 	].
 
 	spec for: #(#'pharo9.x') do: [
 		spec baseline: 'Magritte' with: [ 
 			spec
-				loads: #('Seaside');
+				loads: #('default' 'Seaside' 'Tests');
 				repository: 'github://magritte-metamodel/magritte:master/source' ]
 	].
 ]
@@ -106,7 +106,7 @@ BaselineOfPharoWeb >> seaside: spec [
 		spec
 			baseline: 'Seaside3' with: [ 
 				spec
-					loads: #('Development' 'Examples' 'JQuery' 'Zinc');
+					loads: #('default' 'Examples' 'OneClick');
 					repository: 'github://SeasideSt/Seaside:master/repository' ] ":v3.4.x"
 	]
 ]
@@ -117,7 +117,7 @@ BaselineOfPharoWeb >> seasideBootstrap: spec [
 	spec for: #common do: [	
 		spec	baseline: 'Bootstrap4' with: [ 
 				spec 
-					loads: #('Core' 'Examples');
+					loads: #('all');
 					repository: 'github://astares/Seaside-Bootstrap4:master/src'
 		].
 	].
