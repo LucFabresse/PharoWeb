@@ -1,0 +1,29 @@
+language: smalltalk
+sudo: false
+
+os:
+- linux
+#- osx
+#- windows
+
+smalltalk:
+  - Pharo64-8.0
+#- Pharo64-9.0
+
+# https://docs.travis-ci.com/user/build-matrix/
+# matrix:
+#   fast_finish: true
+#   allow_failures:
+#     - smalltalk: Pharo64-8.0
+
+services:
+  - mongodb
+
+before_script:
+  # - sleep 10
+  - mongo test --eval 'db.createUser({user:"pharounittest",pwd:"test",roles:[]});'
+
+# after_success:
+# - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
+# - tar -zcf result.tgz result
+# - bash upload.sh result.tgz

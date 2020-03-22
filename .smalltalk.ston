@@ -1,0 +1,14 @@
+SmalltalkCISpec {
+  #loading : [
+    SCIMetacelloLoadSpec {
+      #baseline : 'PharoWeb',
+      #onConflict: #useLoaded,
+      #directory : 'src'
+    }
+  ],
+  #testing : {
+    #exclude : {
+      #classes : [ #MongoReplicationOkTest ]
+    }
+  }
+}
