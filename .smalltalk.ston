@@ -1,11 +1,34 @@
 SmalltalkCISpec {
   #loading : [
     SCIMetacelloLoadSpec {
-      #baseline : 'Null',
+      #baseline : 'PharoWeb',
+      #onConflict: #useLoaded,
       #directory : 'src'
     }
   ],
   #testing : {
-    #failOnZeroTests : false
+    #include : {
+      #packages : [
+        'Grease.*',
+        'Seaside.*',
+        'Javascript.*',
+        'JQuery.*',
+        'Bootstrap.*',
+        'Material.*',
+        'Magritte.*',
+        'JSON.*',
+        'STON.*',
+        'XML.*',
+        'Teapot.*',
+        'Mustache.*',
+        'Mongo.*',
+        'Voyage.*',
+        'RSS.*',
+        'Scriptaculous.*'
+      ]
+    },
+    #exclude : {
+      #classes : [ #MongoReplicationOkTest ]
+    }
   }
 }
