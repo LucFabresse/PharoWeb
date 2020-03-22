@@ -8,22 +8,36 @@ os:
 
 smalltalk:
   - Pharo64-8.0
-#- Pharo64-9.0
+  - Pharo64-9.0
 
 # https://docs.travis-ci.com/user/build-matrix/
-# matrix:
-#   fast_finish: true
-#   allow_failures:
-#     - smalltalk: Pharo64-8.0
+matrix:
+  fast_finish: true
+  allow_failures:
+    - smalltalk: Pharo64-8.0 Pharo64-9.0
 
 services:
   - mongodb
 
 before_script:
-  # - sleep 10
   - mongo test --eval 'db.createUser({user:"pharounittest",pwd:"test",roles:[]});'
 
-# after_success:
-# - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
-# - tar -zcf result.tgz result
-# - bash upload.sh result.tgz
+before_deploy:
+  - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
+  - cp "${SMALLTALK_CI_IMAGE}" "PharoWeb.image"
+  - cp "${SMALLTALK_CI_CHANGES}" "PharoWeb.changes"
+  - PHARO_VERSION=`echo ${TRAVIS_SMALLTALK_VERSION} | awk -F- '{print $2;}'`
+  - RESULT_ZIP="PharoWeb${PHARO_VERSION}-${TRAVIS_BRANCH}.zip"
+  - zip -q ${RESULT_ZIP} "PharoWeb.image" "PharoWeb.changes"
+  - bash upload.sh ${RESULT_ZIP}
+
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key:
+    secure:
+  file: ${RESULT_ZIP}
+  on:
+    repo: LucFabresse/PharoWeb
+    tags: true
+  draft: true
