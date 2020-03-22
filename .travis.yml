@@ -22,7 +22,7 @@ services:
 before_script:
   - mongo test --eval 'db.createUser({user:"pharounittest",pwd:"test",roles:[]});'
 
-before_deploy:
+after_success:
   - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
   - cp "${SMALLTALK_CI_IMAGE}" "PharoWeb.image"
   - cp "${SMALLTALK_CI_CHANGES}" "PharoWeb.changes"
