@@ -45,4 +45,4 @@ deploy:
   on:
     repo: LucFabresse/PharoWeb
     tags: true
-  draft: true
+  # draft: true
