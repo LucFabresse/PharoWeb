@@ -7,6 +7,26 @@ SmalltalkCISpec {
     }
   ],
   #testing : {
+    #include : {
+      #packages : [
+        'Grease.*',
+        'Seaside.*',
+        'Javascript.*',
+        'JQuery.*',
+        'Bootstrap.*',
+        'Material.*',
+        'Magritte.*',
+        'JSON.*'
+        'STON.*'
+        'XML.*',
+        'Teapot.*',
+        'Mustache.*',
+        'Mongo.*',
+        'Voyage.*',
+        'RSS.*',
+        'Scriptaculous.*'
+      ]
+    },
     #exclude : {
       #classes : [ #MongoReplicationOkTest ]
     }
