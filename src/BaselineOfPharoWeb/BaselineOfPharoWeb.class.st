@@ -3,7 +3,6 @@ Metacello new
 	baseline:'PharoWeb';
 	repository: 'github://LucFabresse/PharoWeb/src';
 	onConflict: [ :ex | ex useLoaded ]; ""because external projects loads different versions of Seaside for example...""
-	""ignoreImage;"" ""zinc""
 	load.
 
 -----
@@ -29,7 +28,7 @@ BaselineOfPharoWeb >> baseline: spec [
 	self bootstrapMagritte: spec.
 	self materialDesignLite: spec.
 	self dataFormat: spec.
-	self zinc: spec.	
+	"self zinc: spec."	
 	self teapot: spec.
 	self mustache: spec.
 	self voyage: spec.
