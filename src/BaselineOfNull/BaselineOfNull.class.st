@@ -1,7 +1,7 @@
 Class {
 	#name : #BaselineOfNull,
 	#superclass : #BaselineOf,
-	#category : #BaselineOfPharoWeb
+	#category : #BaselineOfNull
 }
 
 { #category : #baselines }
