@@ -4,7 +4,7 @@ SmalltalkCISpec {
       #baseline : 'Null',
       #directory : 'src'
     }
-  ]
+  ],
   #testing : {
     #failOnZeroTests : false
   }
