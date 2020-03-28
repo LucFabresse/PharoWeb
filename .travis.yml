@@ -6,8 +6,8 @@ os:
 #- osx
 #- windows
 
-script:
- - smalltalkci .null.ston
+# script:
+#  - smalltalkci .null.ston
 
 smalltalk:
   - Pharo64-8.0
@@ -26,15 +26,12 @@ before_script:
   - mongo test --eval 'db.createUser({user:"pharounittest",pwd:"test",roles:[]});'
 
 after_success:
-  file_glob: true
   - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
-  - echo ${SMALLTALK_CI_IMAGE}
   - cp "${SMALLTALK_CI_IMAGE}" "PharoWeb.image"
   - cp "${SMALLTALK_CI_CHANGES}" "PharoWeb.changes"
   - PHARO_VERSION=`echo ${TRAVIS_SMALLTALK_VERSION} | awk -F- '{print $2;}'`
   - RESULT_ZIP="PharoWeb-${PHARO_VERSION}.zip"
-  - ls -lR
-  - zip ${RESULT_ZIP} "PharoWeb.image" "PharoWeb.changes" "*.sources"
+  - zip ${RESULT_ZIP} "PharoWeb.image" "PharoWeb.changes"
   - bash upload.sh ${RESULT_ZIP}
 
 branches:
