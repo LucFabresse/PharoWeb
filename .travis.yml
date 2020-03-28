@@ -26,8 +26,9 @@ before_script:
   - mongo test --eval 'db.createUser({user:"pharounittest",pwd:"test",roles:[]});'
 
 after_success:
+  file_glob: true
   - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
-  - echo "SMALLTALK_CI_IMAGE=${SMALLTALK_CI_IMAGE}"
+  - echo ${SMALLTALK_CI_IMAGE}
   - cp "${SMALLTALK_CI_IMAGE}" "PharoWeb.image"
   - cp "${SMALLTALK_CI_CHANGES}" "PharoWeb.changes"
   - PHARO_VERSION=`echo ${TRAVIS_SMALLTALK_VERSION} | awk -F- '{print $2;}'`
