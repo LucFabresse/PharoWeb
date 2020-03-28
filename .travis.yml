@@ -7,7 +7,7 @@ os:
 #- windows
 
 script:
- - smalltalkci .dummy.ston
+ - smalltalkci .null.ston
 
 smalltalk:
   - Pharo64-8.0
