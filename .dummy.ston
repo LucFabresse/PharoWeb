@@ -1,0 +1,11 @@
+SmalltalkCISpec {
+  #loading : [
+    SCIMetacelloLoadSpec {
+      #baseline : 'Dummy',
+      #directory : 'src'
+    }
+  ],
+  #testing : {
+    #failOnZeroTests : false
+  }
+}

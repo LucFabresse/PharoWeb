@@ -6,6 +6,9 @@ os:
 #- osx
 #- windows
 
+script:
+ - smalltalkci .dummy.ston
+
 smalltalk:
   - Pharo64-8.0
   # - Pharo64-9.0
@@ -28,6 +31,7 @@ after_success:
   - cp "${SMALLTALK_CI_CHANGES}" "PharoWeb.changes"
   - PHARO_VERSION=`echo ${TRAVIS_SMALLTALK_VERSION} | awk -F- '{print $2;}'`
   - RESULT_ZIP="PharoWeb-${PHARO_VERSION}.zip"
+  - ls -lR
   - zip ${RESULT_ZIP} "PharoWeb.image" "PharoWeb.changes" "*.sources"
   - bash upload.sh ${RESULT_ZIP}
 
