@@ -16,6 +16,6 @@ This is the image to use for the [Pharo MOOC](https://mooc.pharo.org)
 Metacello new
    baseline:'TinyBlog';
    repository: 'github://LucFabresse/PharoWeb/src';
-	 onConflict: [ :ex | ex useLoaded ];
+   onConflict: [ :ex | ex useLoaded ];
    load
  ```
