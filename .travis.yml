@@ -6,14 +6,10 @@ os:
 #- osx
 #- windows
 
-# script:
-#  - smalltalkci .null.ston
-
 smalltalk:
   - Pharo64-8.0
   # - Pharo64-9.0
 
-# https://docs.travis-ci.com/user/build-matrix/
 # matrix:
 #   fast_finish: true
 #   allow_failures:
@@ -22,21 +18,30 @@ smalltalk:
 services:
   - mongodb
 
+before_install:
+  - scripts/downloadAndCachePharoImage.sh
+
 before_script:
   - mongo test --eval 'db.createUser({user:"pharounittest",pwd:"test",roles:[]});'
+
+script:
+  - smalltalkci .null.ston
+
+script:
+  - "$SMALLTALK_CI_HOME/run.sh" --image ${TRAVIS_SMALLTALK_VERSION} ".smalltalk.ston"
 
 after_success:
   - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
   - cp "${SMALLTALK_CI_IMAGE}" "PharoWeb.image"
   - cp "${SMALLTALK_CI_CHANGES}" "PharoWeb.changes"
+  - cp "${SMALLTALK_CI_BUILD}/*.sources" .
   - PHARO_VERSION=`echo ${TRAVIS_SMALLTALK_VERSION} | awk -F- '{print $2;}'`
   - RESULT_ZIP="PharoWeb-${PHARO_VERSION}.zip"
-  - zip ${RESULT_ZIP} "PharoWeb.image" "PharoWeb.changes"
+  - zip ${RESULT_ZIP} "PharoWeb.image" "PharoWeb.changes" "*.sources"
   - bash upload.sh ${RESULT_ZIP}
 
 branches:
   except:
-    - # Do not build tags that we create when we upload to GitHub Releases
     - /^(?i:continuous.*)$/
 
 # deploy:
