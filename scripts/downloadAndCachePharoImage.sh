@@ -26,10 +26,10 @@ PHARO_VERSION=$(echo "${TRAVIS_SMALLTALK_VERSION}" | cut -f2 -d- | tr -d '.')
 echo "PHARO_VERSION=${PHARO_VERSION}"
 PHARO_URL="http://files.pharo.org/get-files/${PHARO_VERSION}/pharo64.zip"
 
+ls -lR "${SMALLTALK_CI_CACHE}"
 # put our image in smalltalkci's image cache dir
 IMAGE_CACHE_DIR="${SMALLTALK_CI_CACHE}/${TRAVIS_SMALLTALK_VERSION}"
-echo "${IMAGE_CACHE_DIR}"
-mkdir "${IMAGE_CACHE_DIR}"
+mkdir -p "${IMAGE_CACHE_DIR}"
 pushd "${IMAGE_CACHE_DIR}"
 wget ${PHARO_URL}
 unzip pharo64.zip
