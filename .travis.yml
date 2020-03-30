@@ -13,16 +13,8 @@ smalltalk:
   - Pharo64-8.0
 # - Pharo64-9.0 # Seaside is not Pharo9 ready
 
-# matrix:
-#   fast_finish: true
-#   allow_failures:
-#     - smalltalk: Pharo64-8.0 Pharo64-9.0
-
 services:
   - mongodb
-
-# before_install:
-#   - "scripts/downloadAndCachePharoImage.sh"
 
 before_script:
   - mongo test --eval 'db.createUser({user:"pharounittest",pwd:"test",roles:[]});'
