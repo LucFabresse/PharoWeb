@@ -19,16 +19,13 @@ services:
   - mongodb
 
 before_install:
-  - scripts/downloadAndCachePharoImage.sh
+  - "scripts/downloadAndCachePharoImage.sh"
 
 before_script:
   - mongo test --eval 'db.createUser({user:"pharounittest",pwd:"test",roles:[]});'
 
 script:
   - smalltalkci .null.ston
-
-script:
-  - "$SMALLTALK_CI_HOME/run.sh" --image ${TRAVIS_SMALLTALK_VERSION} ".smalltalk.ston"
 
 after_success:
   - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
