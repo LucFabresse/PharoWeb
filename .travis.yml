@@ -11,7 +11,7 @@ os:
 
 smalltalk:
   - Pharo64-8.0
-  # - Pharo64-9.0
+  - Pharo64-9.0
 
 # matrix:
 #   fast_finish: true
@@ -27,14 +27,13 @@ services:
 before_script:
   - mongo test --eval 'db.createUser({user:"pharounittest",pwd:"test",roles:[]});'
 
-script:
-  - smalltalkci .null.ston
+# script:
+#   - smalltalkci .null.ston
 
 after_success:
   - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
   - cp "${SMALLTALK_CI_IMAGE}" "PharoWeb.image"
   - cp "${SMALLTALK_CI_CHANGES}" "PharoWeb.changes"
-  - ls -lR "${SMALLTALK_CI_BUILD}"
   - cp ${SMALLTALK_CI_BUILD}/*.sources .
   - PHARO_VERSION=`echo ${TRAVIS_SMALLTALK_VERSION} | awk -F- '{print $2;}'`
   - RESULT_ZIP="PharoWeb-${PHARO_VERSION}.zip"
@@ -55,6 +54,4 @@ branches:
 #   on:
 #     repo: LucFabresse/PharoWeb
 #     tags: true
-#     all_branches: true
-#     condition: $TRAVIS_BRANCH =~ /^(?i:continuous.*)$/
-#     draft: true
+##     draft: true
