@@ -1,6 +1,9 @@
 language: smalltalk
 sudo: false
 
+git:
+  depth: 1
+
 os:
 - linux
 #- osx
@@ -32,10 +35,10 @@ after_success:
   - cp "${SMALLTALK_CI_IMAGE}" "PharoWeb.image"
   - cp "${SMALLTALK_CI_CHANGES}" "PharoWeb.changes"
   - ls -lR "${SMALLTALK_CI_BUILD}"
-  - cp "${SMALLTALK_CI_BUILD}/*.sources" .
+  - cp ${SMALLTALK_CI_BUILD}/*.sources .
   - PHARO_VERSION=`echo ${TRAVIS_SMALLTALK_VERSION} | awk -F- '{print $2;}'`
   - RESULT_ZIP="PharoWeb-${PHARO_VERSION}.zip"
-  - zip ${RESULT_ZIP} "PharoWeb.image" "PharoWeb.changes" "*.sources"
+  - zip -9 ${RESULT_ZIP} "PharoWeb.image" "PharoWeb.changes" *.sources
   - bash upload.sh ${RESULT_ZIP}
 
 branches:
@@ -52,4 +55,6 @@ branches:
 #   on:
 #     repo: LucFabresse/PharoWeb
 #     tags: true
-#   # draft: true
+#     all_branches: true
+#     condition: $TRAVIS_BRANCH =~ /^(?i:continuous.*)$/
+#     draft: true
