@@ -23,7 +23,7 @@ before_script:
 #   - smalltalkci .null.ston
 
 after_success:
-  - scripts/runSt.sh scripts/cleanImage.st
+  - scripts/runSt.sh st --save --quit scripts/cleanImage.st
   - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
   - cp "${SMALLTALK_CI_IMAGE}" "PharoWeb.image"
   - cp "${SMALLTALK_CI_CHANGES}" "PharoWeb.changes"
