@@ -8,7 +8,8 @@
 
 This project builds a Pharo image with Web development libraries and tools.
 
-This is the image to use for the [Pharo MOOC](https://mooc.pharo.org)
+This is the Pharo image to use for following the [Pharo MOOC](https://mooc.pharo.org).
+It includes several frameworks and libraries related to Web development.
 
 ## Manual Loading
 
