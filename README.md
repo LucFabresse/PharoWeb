@@ -15,7 +15,7 @@ It includes several frameworks and libraries related to Web development.
 
 ```smalltalk
 Metacello new
-   baseline:'TinyBlog';
+   baseline:'PharoWeb';
    repository: 'github://LucFabresse/PharoWeb/src';
    onConflict: [ :ex | ex useLoaded ];
    load

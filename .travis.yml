@@ -11,7 +11,7 @@ os:
 
 smalltalk:
   - Pharo64-8.0
-# - Pharo64-9.0 # Seaside is not Pharo9 ready
+  - Pharo64-9.0
 
 services:
   - mongodb
